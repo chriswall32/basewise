@@ -115,7 +115,7 @@ class UserTest < ActiveSupport::TestCase
         end
 
         should "return the user" do
-          assert_equal @user, User.authenticate(email: @user.email, password: "foobar2$")
+          assert_equal @user, User.authenticate(email: @user.email, password: @user.password)
         end
       end
 
@@ -132,7 +132,7 @@ class UserTest < ActiveSupport::TestCase
       end
 
       should "return the user" do
-        assert_equal @user, User.authenticate(email: @user.email, password: "foobar2$")
+        assert_equal @user, User.authenticate(email: @user.email, password: @user.password)
       end
     end
 

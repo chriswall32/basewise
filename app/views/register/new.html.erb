@@ -1,0 +1,26 @@
+<% content_for :title, "Register for Basewise" %>
+
+<%= if @user.errors.any? %>
+    <div class="errors">
+      <% @user.errors.full_messages.each do |messages| %>
+      <% messages %>
+          <% end %>
+    </div>
+<% end %>
+
+<%= form_for @user, url: new_registration_path do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, placeholder: "Email address" %>
+
+    <%= f.label :first_name %>
+    <%=f.text_field :first_name, placeholder: "First name" %>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, placeholder: "Last name" %>
+
+    <%= f.label :password %>
+    <%= f.text_field :password, placeholder: "Password" %>
+
+    <%= f.submit %>
+<% end %>
+
