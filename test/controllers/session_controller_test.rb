@@ -17,7 +17,7 @@ class SessionControllerTest < ActionController::TestCase
 
     context "when the user is not found" do
       should "render the 'new' template" do
-        post :create, { email: "foo@bar.com" }
+        post :create, user: { email: "foo@bar.com" }
         assert_template :new
       end
     end
@@ -25,7 +25,7 @@ class SessionControllerTest < ActionController::TestCase
     context "when the user is found" do
       context "and the password is incorrect" do
         should "render new template" do
-            post :create, {email: @user.email, password: "foo" }
+            post :create, user: {email: @user.email, password: "foo" }
             assert_template :new
           end
         end
@@ -33,7 +33,7 @@ class SessionControllerTest < ActionController::TestCase
       end
       context "and the password is correct" do
         should "log the user in and redirect to the projects page" do
-          post :create, { email: @user.email, password: @user.password}
+          post :create, user: { email: @user.email, password: @user.password}
           assert_not_nil assigns(:current_user)
           assert_redirected_to projects_path
         end
@@ -42,11 +42,26 @@ class SessionControllerTest < ActionController::TestCase
     end
 
   context "DELETE /destroy" do
-    should "logout user" do
-      #assert_difference(User.count, -1) do
-       # delete :destroy, email: @user.email
-      #end
-      #assert_redirected_to login_path
+    context "when the user is not logged in" do
+      should "redirect user to signin" do
+        delete :destroy
+        assert_redirected_to signin_path
+      end
+    end
+
+    context "when the user is logged in" do
+      setup do
+        @user = Fabricate(:user)
+        login_user(@user)
+      end
+
+      should "remove session id, set the current user to nil, and redirect to the signin page" do
+        delete :destroy
+
+        assert_nil session[:user_id]
+        assert_nil @controller.current_user
+        assert_redirected_to signin_path
+      end
     end
   end
 

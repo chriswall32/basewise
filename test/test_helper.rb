@@ -4,8 +4,11 @@ require 'rails/test_help'
 require 'mocha/mini_test'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
 
+end
 
-  # Add more helper methods to be used by all tests here...
+class ActionController::TestCase
+  def login_user(user)
+    @controller.login_as(user)
+  end
 end

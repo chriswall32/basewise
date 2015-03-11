@@ -11,11 +11,14 @@ class SessionController < ApplicationController
       redirect_to projects_path
     else
       flash.now[:notice] = "Email or password is incorrect"
+      @user = User.new
       render "new"
     end
   end
 
   def destroy
+    logout_user
+    redirect_to signin_path
   end
 
 end

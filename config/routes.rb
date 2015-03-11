@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   # Session
+  # resource :session, only: [new, create, destroy]
   get "signin" => "session#new", as: "signin"
   post "login" => "session#create", as: "login"
   delete "logout" => "session#destroy", as: "logout"
