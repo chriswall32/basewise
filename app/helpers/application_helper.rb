@@ -3,8 +3,8 @@ module ApplicationHelper
     [].tap do |ary|
       ary << "Basewise"
       ary << ": " if user
-      ary << user_name(user)
-    end.join("")
+      ary << link_to(user_name(user), edit_user_path(user)) if user
+    end.join("").html_safe
   end
   def user_name(user)
     return nil unless user
@@ -20,8 +20,6 @@ module ApplicationHelper
          " | " +
          link_to( "Log In", signin_path)
       end
-
     end
-
   end
 end

@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   resources :projects
 
   # Users
-  # resources :users
+  resources :users, only: [:edit, :update, :destroy]
 end
