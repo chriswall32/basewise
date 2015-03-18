@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.new_user, .edit_user {
+.new_user, .edit_user, .new_project {
   @include span-columns(4 of 12);
   @include shift( 4 of 12 );
   @include border-radius($base-border-radius);
