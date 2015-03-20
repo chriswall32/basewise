@@ -91,3 +91,17 @@ div.project {
   padding: 15px;
 }
 
+ul.todo-list-list {
+  li{
+    h3{
+      color: darken($base-background-color, 45);
+    }
+    h4 {
+      font-size: $base-font-size * .8;
+      color: $medium-gray;
+    }
+    a {
+      font-size: $base-font-size * .5;
+    }
+  }
+}

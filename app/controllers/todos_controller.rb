@@ -1,11 +1,7 @@
-class TodoListsController < ApplicationController
+class TodosController < ActionController
   before_action :authenticate_user!
 
   def create
-
-  end
-
-  def show
 
   end
 

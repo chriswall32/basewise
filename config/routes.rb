@@ -12,11 +12,15 @@ Rails.application.routes.draw do
     #resources :register, only: [:create, :new]
 
   # Projects
-  resources :projects
+  resources :projects do
+    # Todo Lists
+    resources :todo_lists, only: [:create, :update, :destroy, :show] do
+      resources :todos, only: [:create, :update, :destroy]
+    end
+  end
 
   # Users
   resources :users, only: [:edit, :update, :destroy]
 
-  # Todo Lists
-  resources :todo_lists, only: [:create, :update, :destroy, :show]
+
 end
